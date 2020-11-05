@@ -1,0 +1,24 @@
+{
+    "name": "deadchatxd",
+    "version": "1.0.0",
+    "description": "Discord bot that sends a 'dead chat xd' meme gif if there is no activity in a channel for a certain amount of time.",
+    "main": "deadchatxd.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/saucylegs/deadchatxd.git"
+    },
+    "keywords": [
+        "discord",
+        "node"
+    ],
+    "author": "saucylegs",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/saucylegs/deadchatxd/issues"
+    },
+    "homepage": "https://github.com/saucylegs/deadchatxd#readme",
+    "dependencies": {
+        "discord.js": "^12.3.1",
+        "mysql": "^2.18.1"
+    }
+}
