@@ -148,10 +148,7 @@ function timeToMs(msg) {
             totalMs += val;
         });
 
-        if (!totalMs) {
-            console.error("timeToMs() returned an unexpected result of " + totalMs + ". The regex matches were: " + initialMatch);
-            return [false, "<:error:772980320680542238> There was an error while trying to run this command. Please try again or contact Saucy#6942 if the issue persists."];
-        } else if (totalMs < 10000) {
+        if (totalMs < 10000) {
             return [false, "<:error:772980320680542238> Your timer is too short. It must be at least 10 seconds."];
         } else if (totalMs > 604800000) {
             return [false, "<:error:772980320680542238> Your timer is too long. It must be less than 7 days."];
