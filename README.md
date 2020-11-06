@@ -21,3 +21,31 @@ Once the timer goes off and the bot activates, it will send one of the following
 If you have a bug to report or an idea to suggest, use the [issues page](https://github.com/saucylegs/deadchatxd/issues)!
 
 If there's a critical issue, such as the bot not being able to contact the database, please send me a Discord DM if you can (Saucy#6942) so I can fix it ASAP.
+
+## Self-hosting
+If you want to host a version of this bot yourself, you'll need the latest versions of Node.js, npm, and MySQL. 
+These instructions assume you're using Linux and have some experience with this kind of stuff.
+
+### Making a database
+This bot uses MySQL as a database.
+
+Before you try to start the bot, you need to create a database and add this table to it:
+```SQL
+CREATE TABLE channels (channel VARCHAR(18), timer INT(10));
+```
+
+### Getting & running the code
+1. Go to where you want the bot stored, clone the repository, and go into the directory
+```bash
+git clone https://github.com/saucylegs/deadchatxd
+cd deadchatxd
+```
+2. Install node.js dependencies
+```bash
+npm install
+```
+3. Start the bot.
+```bash
+TOKEN='<discord bot token>' ACTIVITY='<discord activity>' MYSQL_HOST='<host ip>' MYSQL_USER='<username>' MYSQL_PASSWORD='<password>' MYSQL_DATABASE='<database>' node deadchatxd.js
+```
+`<TOKEN>` is your Discord bot token that you get from the [Discord developer dashboard](https://discord.com/developers/applications). `<ACTIVITY>` is optional, that's what shows up on Discord as the game your bot is playing. `<MYSQL_HOST>` is the IP address of the MySQL server you're using, if it's running on the same machine as the bot, you can just use localhost. `<MYSQL_USER>` and `<MYSQL_PASSWORD>` is the username and password your bot will use to log in to the MySQL database. `<MYSQL_DATABASE>` is the name of the database where the table you created earlier is stored.
