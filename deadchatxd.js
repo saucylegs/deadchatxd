@@ -34,11 +34,15 @@ const helpEmbed = {
     ],
 };
 
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
+})
+
+pool.on('release', function() {
+    console.log("SQL connection released");
 })
 
 function sendImg(chId) {
@@ -68,8 +72,8 @@ function sendImg(chId) {
         console.error(error);
         console.log("Could not fetch the requested channel! Channel:", chId);
         // Channel is presumably deleted or no longer accessible, send sql request to delete it from the database
-        let sqlCommand = "DELETE FROM channels WHERE channel = " + connection.escape(chId);
-        connection.query(sqlCommand, function (error, results) {
+        let sqlCommand = "DELETE FROM channels WHERE channel = " + pool.escape(chId);
+        pool.query(sqlCommand, function (error, results) {
             if (error) {
                 console.error("Error deleting row from the database:", error);
             } else {
@@ -161,7 +165,7 @@ function timeToMs(msg) {
 }
 
 function startup() {
-    connection.query("SELECT * FROM channels", function (error, results) {
+    pool.query("SELECT * FROM channels", function (error, results) {
         if (error) throw error;
         results.forEach(function (row) {
             cl.push(row.channel);
@@ -234,7 +238,7 @@ client.on('message', message => {
                                 let ms = toMs[2];
                                 // Jarvis, connect to the database and insert the channel and timer.
                                 let sqlValues = [chId, ms];
-                                connection.query("INSERT INTO channels (channel, timer) VALUES (?, ?)", sqlValues, function (error, results) {
+                                pool.query("INSERT INTO channels (channel, timer) VALUES (?, ?)", sqlValues, function (error, results) {
                                     if (error) {
                                         console.error("Error inserting into the database:", error);
                                         message.channel.send("<:error:772980320680542238> There was an error while trying to contact the database. Please try again later or contact Saucy#6942 if the issue persists.");
@@ -263,8 +267,8 @@ client.on('message', message => {
                     if (index < 0) {
                         message.channel.send("<:error:772980320680542238> Cannot disable, dead chat xd is not enabled in this channel.");
                     } else {
-                        let sqlCommand = "DELETE FROM channels WHERE channel = " + connection.escape(chId);
-                        connection.query(sqlCommand, function (error, results) {
+                        let sqlCommand = "DELETE FROM channels WHERE channel = " + pool.escape(chId);
+                        pool.query(sqlCommand, function (error, results) {
                             if (error) {
                                 console.error("Error deleting row from the database:", error);
                                 message.channel.send("<:error:772980320680542238> There was an error while trying to contact the database. Please try again later or contact Saucy#6942 if the issue persists.");
@@ -292,8 +296,8 @@ client.on('message', message => {
                             message.channel.send(toMs[1]);
                         } else {
                             let ms = toMs[2];
-                            let sqlCommand = "UPDATE channels SET timer = " + connection.escape(ms) + " WHERE channel = " + connection.escape(chId);
-                            connection.query(sqlCommand, function (error, results) {
+                            let sqlCommand = "UPDATE channels SET timer = " + pool.escape(ms) + " WHERE channel = " + pool.escape(chId);
+                            pool.query(sqlCommand, function (error, results) {
                                 if (error) {
                                     console.error("Error updating row in the database:", error);
                                     message.channel.send("<:error:772980320680542238> There was an error while trying to contact the database. Please try again later or contact Saucy#6942 if the issue persists.");
