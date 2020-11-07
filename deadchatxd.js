@@ -7,7 +7,9 @@
 
 const Discord = require('discord.js');
 const mysql = require('mysql');
+const DBL = require('dblapi.js');
 const client = new Discord.Client();
+const dbl = new DBL(process.env.DBL_TOKEN, client);
 
 // const gifRegex = /dead_chat_xd/g;
 const cmdRegex = /(help|query|enable|disable|edit)/g;
@@ -33,6 +35,14 @@ const helpEmbed = {
         },
     ],
 };
+
+// DBL API for top.gg
+dbl.on('posted', ()=>{
+    console.log("Server count posted to top.gg");
+})
+dbl.on('error', error => {
+    console.error("top.gg error:", error);
+})
 
 var pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
@@ -164,6 +174,13 @@ function timeToMs(msg) {
     }
 }
 
+function countServers() {
+    console.log("Bot is in " + client.guilds.cache.size + " servers");
+    if (process.env.DBL_TOKEN) {
+        dbl.postStats(client.guilds.cache.size);
+    }
+}
+
 function startup() {
     pool.query("SELECT * FROM channels", function (error, results) {
         if (error) throw error;
@@ -186,6 +203,9 @@ client.on('ready', () => {
     if (process.env.ACTIVITY) {
         client.user.setActivity(process.env.ACTIVITY);
     }
+
+    countServers();
+    setInterval(countServers, 3600000);
 })
 
 client.on('message', message => {
