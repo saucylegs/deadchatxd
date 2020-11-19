@@ -7,9 +7,9 @@
 
 const Discord = require('discord.js');
 const mysql = require('mysql');
-// const DBL = require('dblapi.js');
+const DBL = require('dblapi.js');
 const client = new Discord.Client();
-// const dbl = new DBL(process.env.DBL_TOKEN, client);
+const dbl = new DBL(process.env.DBL_TOKEN, client);
 
 // const gifRegex = /dead_chat_xd/g;
 const cmdRegex = /(help|query|enable|disable|edit)/g;
@@ -31,18 +31,18 @@ const helpEmbed = {
         },
         {
             name: "Bot Info",
-            value: "[Bot Invite Link](https://discord.com/api/oauth2/authorize?client_id=747345374309777428&permissions=379904&scope=bot) | [GitHub](https://github.com/saucylegs/deadchatxd) | Creator: Saucy#6942",
+            value: "[Bot Invite Link](https://discord.com/api/oauth2/authorize?client_id=747345374309777428&permissions=379904&scope=bot) | [top.gg](https://top.gg/bot/747345374309777428) | [GitHub](https://github.com/saucylegs/deadchatxd) | Creator: Saucy#6942",
         },
     ],
 };
 
 // DBL API for top.gg
-/*dbl.on('posted', ()=>{
+dbl.on('posted', ()=>{
     console.log("Server count posted to top.gg");
 })
 dbl.on('error', error => {
     console.error("top.gg error:", error);
-})*/
+})
 
 var pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
@@ -176,9 +176,9 @@ function timeToMs(msg) {
 
 function countServers() {
     console.log("Bot is in " + client.guilds.cache.size + " servers");
-    /* if (process.env.DBL_TOKEN) {
+    if (process.env.DBL_TOKEN) {
         dbl.postStats(client.guilds.cache.size);
-    } */
+    }
 }
 
 function startup() {
