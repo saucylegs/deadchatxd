@@ -17,7 +17,7 @@ The enable, disable, and edit commands require you to have Manage Channels permi
   
 ### GIFs
 Once the timer goes off and the bot activates, it will send one of the following gifs:
-[1](https://cdn.discordapp.com/attachments/366776253124050947/747354851570090004/dead_chat_xd.gif) (highest chance), [2](https://cdn.discordapp.com/attachments/366776253124050947/747767766467084288/dead_chat_xd_2.gif), [3](https://cdn.discordapp.com/attachments/366776253124050947/748499440192454747/dead_chat_xd_3.gif), [4](https://cdn.discordapp.com/attachments/366776253124050947/752805605583880192/dead_chat_xd_4.gif), [5](https://cdn.discordapp.com/attachments/671076353944059905/758165638387728434/dead_chat_xd_5.gif), [6](https://cdn.discordapp.com/attachments/366776253124050947/759711661468155914/dead_chat_xd_6.gif)
+[1](https://cdn.discordapp.com/attachments/366776253124050947/747354851570090004/dead_chat_xd.gif) (highest chance), [2](https://cdn.discordapp.com/attachments/366776253124050947/747767766467084288/dead_chat_xd_2.gif), [3](https://cdn.discordapp.com/attachments/366776253124050947/748499440192454747/dead_chat_xd_3.gif), [4](https://cdn.discordapp.com/attachments/366776253124050947/752805605583880192/dead_chat_xd_4.gif), [5](https://cdn.discordapp.com/attachments/671076353944059905/758165638387728434/dead_chat_xd_5.gif), [6](https://cdn.discordapp.com/attachments/366776253124050947/759711661468155914/dead_chat_xd_6.gif), [7](https://tenor.com/view/dead-chat-xd-gif-19206088)
 
 ## Issues, Bugs, Suggestions
 If you have a bug to report or an idea to suggest, use the [issues page](https://github.com/saucylegs/deadchatxd/issues)!
