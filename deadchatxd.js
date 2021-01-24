@@ -57,12 +57,12 @@ pool.on('release', function() {
 
 function sendImg(chId) {
     client.channels.fetch(chId).then(channel => {
-        switch (Math.floor(Math.random() * 8)) {
+        switch (Math.floor(Math.random() * 9)) {
             case 0:
                 channel.send("https://cdn.discordapp.com/attachments/366776253124050947/747767766467084288/dead_chat_xd_2.gif");
                 break;
             case 1:
-                channel.send("https://cdn.discordapp.com/attachments/366776253124050947/748499440192454747/dead_chat_xd_3.gif");
+                channel.send("https://tenor.com/view/dead-chat-gif-18800792"); // 3
                 break;
             case 2:
                 channel.send("https://cdn.discordapp.com/attachments/366776253124050947/752805605583880192/dead_chat_xd_4.gif");
@@ -75,6 +75,9 @@ function sendImg(chId) {
                 break;
             case 5:
                 channel.send("https://tenor.com/view/dead-chat-xd-gif-19206088"); // 7
+                break;
+            case 6:
+                channel.send("https://cdn.discordapp.com/attachments/671076353944059905/802811004828123136/dead_chat_xd_8.gif");
                 break;
             default:
                 channel.send("https://cdn.discordapp.com/attachments/366776253124050947/747354851570090004/dead_chat_xd.gif");
