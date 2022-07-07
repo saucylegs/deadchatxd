@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "es2021",
+        
+        "esModuleInterop": true,
+        "noFallthroughCasesInSwitch": true,
+        "removeComments": true
+    },
+    "files": [
+        "deadchatxd.ts"
+    ]
+}
