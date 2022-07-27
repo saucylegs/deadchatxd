@@ -31,8 +31,8 @@ This bot uses an SQL database. It has been tested with MySQL, but should theoret
 
 Before you try to start the bot, you need to create a database and add these tables to it:
 ```SQL
-CREATE TABLE channels (channel VARCHAR(18), timer INT, createdAt DATETIME, updatedAt DATETIME);
-CREATE TABLE servers (server VARCHAR(18), responses JSON, createdAt DATETIME, updatedAt DATETIME);
+CREATE TABLE channels (channel VARCHAR(19), timer INT, createdAt DATETIME, updatedAt DATETIME);
+CREATE TABLE servers (server VARCHAR(19), responses JSON, createdAt DATETIME, updatedAt DATETIME);
 ```
 
 ### Getting & running the code
